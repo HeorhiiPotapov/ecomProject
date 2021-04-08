@@ -1,0 +1,40 @@
+from django.urls import path
+from .views import (ProductDetailView,
+                    ProductListView,
+                    ProductCreateView,
+                    ProductUpdateView,
+                    ProductDeleteView,
+                    ImageCreateView,
+                    ImageEditView,
+                    ImageDeleteView)
+
+app_name = 'products'
+urlpatterns = [
+    path('all/',
+         ProductListView.as_view(),
+         name='all'),
+    path('create/',
+         ProductCreateView.as_view(),
+         name='create'),
+    path('detail/<int:pk>/',
+         ProductDetailView.as_view(),
+         name='detail'),
+    path('edit/<int:pk>/',
+         ProductUpdateView.as_view(),
+         name='edit'),
+    path('delete/<int:pk>/',
+         ProductDeleteView.as_view(),
+         name='delete'),
+    path('category/<str:cat_slug>/',
+         ProductListView.as_view(),
+         name='by_category'),
+    path('image-create/<int:pk>/',
+         ImageCreateView.as_view(),
+         name="image_create"),
+    path('edit-image/<int:pk>/',
+         ImageEditView.as_view(),
+         name="image_edit"),
+    path('edit-delete/<int:pk>/',
+         ImageDeleteView.as_view(),
+         name="image_delete")
+]

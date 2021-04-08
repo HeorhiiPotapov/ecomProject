@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center my-4">
+        <div class="col-lg-5">
+            <h3 class="text-right">Личная информация</h3>
+            <hr>
+            <div class="text-right">
+                <img class="img-fluid rounded-circle border" src="{{ request.user.profile.image.url }}" alt="" style="max-height: 150px">
+            </div>
+            <form class="mt-4" action="." method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ user_form|crispy }}
+                {{ profile_form|crispy }}
+                <button type="submit" class="btn btn-outline-info">Сохранить</button>
+            </form>
+            <h3 class="mt-5 text-right">Безопасность</h3>
+            <hr>
+            <p class="mt-4">Для смены пароля перейдите по ссылке ниже:</p>
+            <a href="{% url 'users:passwd_change' %}">Изменить пароль</a>
+        </div>
+    </div>
+</div>
+{% endblock content %}

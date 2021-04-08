@@ -1,0 +1,43 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-lg-6">
+      <img class="img-fluid" src="{{ object.main_image.url }}" alt="" />
+      <div class="row mt-3">
+        {% for img in object.images.all %}
+          <div class="col-lg-3">
+            <a {% if request.user == object.owner %}
+                  href="{% url 'products:image_edit' pk=img.pk %}"
+                {% else %}
+                  href="#"
+                {% endif %}>
+              <img class="img-fluid" src="{{ img.image.url }}" alt="">
+            </a>
+          </div>
+        {% endfor %}
+      </div>
+      {% if request.user == object.owner %}
+        <div class="row mt-5 justify-content-center">
+          <a class="btn btn-outline-success" href="{% url 'products:image_create' pk=object.pk %}">add image</a>
+        </div>
+      {% endif %}
+    </div>
+    <div class="col-lg-6">
+      <h3>{{ object.name }}</h3>
+      <h5>{{ object.owner.email }}</h5>
+      <a href="{% url 'products:by_category' object.category.slug %}">
+        {{ object.category.name }}
+      </a>
+      {% if object.discount > 0 %}
+        <p><strike>{{ object.price }}</strike></p>
+        <h5>{{ object.price_after_discount }}</h5>
+      {% else %}
+        <h5>{{ object.price }}</h5>
+      {% endif %}
+      <p>{{ object.overview }}</p>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

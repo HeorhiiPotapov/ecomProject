@@ -1,0 +1,49 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="row ">
+        {% for item in object_list %}
+        <div class="col-lg-3 mt-5 ">
+          <div class="card h-100 p-2">
+            <img class="img-fluid" src="{{ item.main_image.url }}" alt="" />
+            <a href="{{ item.get_absolute_url }}">{{ item.name }}</a>
+            {% if item.discount == 0 %}
+            <p>{{ item.price }} uah</p>
+            {% else %}
+            <div>
+              <strike>{{ item.price }} uah</strike>
+              <p>{{ item.price_after_discount }} uah</p>
+            </div>
+            {% endif %} {{ item.owner.email }}{{ item.timestamp }}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% comment %} {% load mptt_tags %}
+<ul>
+  {% recursetree categories %}
+  <li>
+    <a href="{% url 'products:by_category' node.slug %}">
+      {{ node.name }}
+    </a>
+    {% if not node.is_leaf_node %}
+    <ul class="children">
+      {% for c in node.get_children %}
+      <li>
+        <a href="{% url 'products:by_category' c.slug %}"> {{ c }} </a>
+      </li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </li>
+  {% endrecursetree %}
+</ul> {% endcomment %}
+
+{% endblock content %}

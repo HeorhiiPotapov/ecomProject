@@ -1,0 +1,24 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "*"
+flake8 = "*"
+autopep8 = "*"
+django-debug-toolbar = "*"
+pillow = "*"
+ipython = "*"
+django-mptt = "*"
+django-crispy-forms = "*"
+django-heroku = "*"
+gunicorn = "*"
+whitenoise = "*"
+django-storages = "*"
+dropbox = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.9"

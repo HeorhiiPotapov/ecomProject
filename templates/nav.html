@@ -1,0 +1,53 @@
+{% comment %} {% load products_tags %} {% endcomment %}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<div class="container">
+  {% comment %} <a class="navbar-brand" href="#">Logo</a> {% endcomment %}
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="col-lg-3 mr-4"></div><div class="col-lg-5 ml-1"><ul class="navbar-nav">
+      {% comment %} <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          {% cat_list as categories %}
+          {% for cat in categories %}
+            <a href="{% url 'products:by_category' cat.slug %}" class="dropdown-item" >
+              {% if cat.parent %}-- {{ cat.name }}{{ cat.get_level }}{% else %}{{ cat.name }}{% endif %}
+            </a>
+          {% endfor %}
+        </div>
+      </li> {% endcomment %}
+      {% if request.user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link mr-3" href="{% url 'users:logout' %}" tabindex="-1" aria-disabled="true">
+            Выход
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'users:profile' %}">Профиль</a>
+        </li>
+      {% else %}
+        <li class="nav-item">
+          <a class="nav-link mr-3" href="{% url 'users:login' %}" tabindex="-1" aria-disabled="true">
+              Вход
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'users:new' %}">Регистрация</a>
+        </li>
+      {% endif %}
+    </ul>
+    </div>
+    <div class="col-lg-4"></div>
+    {% comment %} <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form> {% endcomment %}
+  </div>
+</div>
+</nav>
