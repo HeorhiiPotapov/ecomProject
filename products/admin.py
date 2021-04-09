@@ -1,7 +1,8 @@
 from django.contrib import admin
 from .models import (Category,
                      Product,
-                     Image)
+                     Image,
+                     Feedback)
 from mptt.admin import DraggableMPTTAdmin
 
 
@@ -26,6 +27,11 @@ class ImageInline(admin.TabularInline):
     extra = 1
 
 
+class FeedbackInLine(admin.StackedInline):
+    model = Feedback
+    extra = 1
+
+
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     model = Product
@@ -46,4 +52,4 @@ class ProductAdmin(admin.ModelAdmin):
                     'category',
                     'price',
                     'is_active')
-    inlines = [ImageInline, ]
+    inlines = [ImageInline, FeedbackInLine]

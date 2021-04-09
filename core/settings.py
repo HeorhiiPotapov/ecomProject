@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     # apps
     'products.apps.ProductsConfig',
     'users.apps.UsersConfig',
+    'information.apps.InformationConfig',
     # soft
     'mptt',
     'crispy_forms',

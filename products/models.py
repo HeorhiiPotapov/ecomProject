@@ -73,7 +73,8 @@ class Product(models.Model):
     overview = models.TextField("Описание", max_length=2000)
     is_active = models.BooleanField("Статус", default=False)
     timestamp = models.DateTimeField("Дата добавления", default=timezone.now)
-    city = models.CharField(max_length=20, choices=CITY_LIST, default=0)
+    city = models.CharField("Город", max_length=20,
+                            choices=CITY_LIST, default=0)
 
     class Meta:
         verbose_name = "Товар/Акция"
@@ -105,14 +106,24 @@ class Image(models.Model):
 
 
 class Feedback(models.Model):
+    product = models.ForeignKey(Product,
+                                on_delete=models.CASCADE,
+                                related_name="feedbacks",
+                                verbose_name="Товар/Акция", null=True, blank=True)
     sender = models.ForeignKey(User,
                                on_delete=models.CASCADE,
-                               related_name="feed_sender")
+                               related_name="feed_sender",
+                               verbose_name="Отправитель")
     receiver = models.ForeignKey(User,
                                  on_delete=models.CASCADE,
-                                 related_name="feed_receiver")
-    text = models.TextField(max_length=600)
-    timestamp = models.DateTimeField(default=timezone.now)
+                                 related_name="feed_receiver",
+                                 verbose_name="Кому")
+    text = models.TextField("Текст", max_length=600)
+    timestamp = models.DateTimeField("Время", default=timezone.now)
+
+    class Meta:
+        verbose_name = "Сообщение"
+        verbose_name_plural = "Сообщения"
 
     def __str__(self):
         return f"{self.sender.email} at {self.timestamp}"
