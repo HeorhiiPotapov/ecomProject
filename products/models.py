@@ -7,7 +7,6 @@ from django.utils import timezone
 from decimal import Decimal
 from mptt.models import MPTTModel, TreeForeignKey
 
-
 User = get_user_model()
 
 
@@ -41,6 +40,18 @@ class Product(models.Model):
     """
     Product class
     """
+    ANY = 0
+    KHARKOV = 1
+    KIEV = 2
+    DNEPR = 3
+
+    CITY_LIST = [
+        ('0', 'Все'),
+        ('1', 'Харьков'),
+        ('2', 'Киев'),
+        ('3', 'Днепр')
+    ]
+
     name = models.CharField("Название", max_length=300)
     price = models.DecimalField("Цена", max_digits=10,
                                 decimal_places=2,
@@ -62,6 +73,7 @@ class Product(models.Model):
     overview = models.TextField("Описание", max_length=2000)
     is_active = models.BooleanField("Статус", default=False)
     timestamp = models.DateTimeField("Дата добавления", default=timezone.now)
+    city = models.CharField(max_length=20, choices=CITY_LIST, default=0)
 
     class Meta:
         verbose_name = "Товар/Акция"

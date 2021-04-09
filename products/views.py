@@ -1,9 +1,5 @@
 from django.shortcuts import get_object_or_404
-from django.views.generic import (ListView,
-                                  DetailView,
-                                  CreateView,
-                                  UpdateView,
-                                  DeleteView)
+from django.views import generic
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Category, Product, Image
@@ -20,7 +16,7 @@ class ImagePermissionsMixin:
         return super().get(*args, **kwargs)
 
 
-class ProductListView(ListView):
+class ProductListView(generic.ListView):
     """
     product list queryset can be a filtered by category
     name, or include all products ordered by creation date
@@ -45,12 +41,12 @@ class ProductListView(ListView):
         return qs
 
 
-class ProductDetailView(DetailView):
+class ProductDetailView(generic.DetailView):
     model = Product
     template_name = 'products/detail.html'
 
 
-class ProductCreateView(LoginRequiredMixin, CreateView):
+class ProductCreateView(LoginRequiredMixin, generic.CreateView):
     form_class = ProductForm
     template_name = 'products/create.html'
     success_url = reverse_lazy('products:all')
@@ -65,7 +61,7 @@ class ProductCreateView(LoginRequiredMixin, CreateView):
 
 class ProductUpdateView(LoginRequiredMixin,
                         IsOwnerMixin,
-                        UpdateView):
+                        generic.UpdateView):
     model = Product
     form_class = ProductForm
     template_name = 'products/edit.html'
@@ -77,13 +73,13 @@ class ProductUpdateView(LoginRequiredMixin,
 
 class ProductDeleteView(LoginRequiredMixin,
                         IsOwnerMixin,
-                        DeleteView):
+                        generic.DeleteView):
     model = Product
     template_name = 'products/delete.html'
     success_url = reverse_lazy('products:all')
 
 
-class ImageCreateView(LoginRequiredMixin, CreateView):
+class ImageCreateView(LoginRequiredMixin, generic.CreateView):
     model = Image
     form_class = ImageForm
     template_name = 'products/image_create.html'
@@ -108,7 +104,7 @@ class ImageCreateView(LoginRequiredMixin, CreateView):
 
 class ImageEditView(LoginRequiredMixin,
                     ImagePermissionsMixin,
-                    UpdateView):
+                    generic.UpdateView):
     model = Image
     form_class = ImageForm
     template_name = 'products/image_edit.html'
@@ -127,7 +123,7 @@ class ImageEditView(LoginRequiredMixin,
 
 class ImageDeleteView(LoginRequiredMixin,
                       ImagePermissionsMixin,
-                      DeleteView):
+                      generic.DeleteView):
     model = Image
     template_name = 'products/image_delete.html'
     success_url = reverse_lazy('products:all')
