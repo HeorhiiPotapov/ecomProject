@@ -1,0 +1,386 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Главная</title>
+
+
+	<script src="{% static './assets/js/jquery-3.6.0.min.js' %}"></script>
+	<link rel="stylesheet" href="{% static './assets/bootstrap/css/bootstrap-grid.min.css' %}">
+	<script src="{% static './assets/bootstrap/js/bootstrap.min.js' %}"></script>
+	<link rel="stylesheet" href="{% static './assets/slick-master/slick/slick.css' %}">
+	<link rel="stylesheet" href="{% static './assets/slick-master/slick/slick-theme.css' %}">
+	<script src="{% static './assets/slick-master/slick/slick.js' %}"></script>
+	<link rel="stylesheet" href="{% static './assets/css/main.css' %}">
+
+</head>
+<body>
+	<div id="page">
+
+		<header class='header-main'>
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-5">
+						<div class="header-main__logo-wrapper">
+							<img src="{% static './img/logo.png' %}" alt="logo">
+						</div>
+					</div>
+					<div class="col-lg-7 d-flex align-items-center">
+						<div class="header-main__items">
+							<div class="header-main__items__item search-form">
+								<form action="" id="search-form">
+									<input type="text" placeholder="Что ищите?">
+									<img class="loupe" src="{% static './img/icons/loupe.svg' %}" alt="loupe">
+								</form>
+							</div>
+							<div class="header-main__items__item region">
+								<form action="" id="region-form">
+									<select>
+										<option disabled selected>Регион</option>
+										<option value="Харьков">Харьков</option>
+										<option value="Киев">Киев</option>
+									</select>
+								</form>
+							</div>
+							<div class="header-main__items__item follow-sale">
+								<a href="#">
+									<img src="{% static './img/icons/follow_sale.svg' %}" alt="follow_sale">
+									подписка на акции
+								</a>
+							</div>
+							<div class="header-main__items__item favorites">
+								<a href="#">
+									<img src="{% static './img/icons/favorites.svg' %}" alt="favorites">
+								</a>
+							</div>
+							<div class="header-main__items__item hamburger">
+								<div class="wrapper-menu-hamburger">
+									<div class="wrapper-menu-hamburger__hamburger-menu"></div>
+								</div>
+							</div>
+						</div> <!-- header-main__items -->
+					</div>
+				</div>
+			</div>
+		</header>
+		
+		<div id="content">
+
+			<div class="slider-temp-wrapper">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12 d-flex justify-content-center">
+							<div class="slider-temp-wrapper__slider-temp">
+								<div class="slider-temp-wrapper__slider-temp__slide-item">
+									<img src="{% static './img/slider-sale.png' %}" alt="slider-sale">
+								</div>
+								<div class="slider-temp-wrapper__slider-temp__slide-item">
+									<img src="{% static './img/slider-sale.png' %}" alt="slider-sale">
+								</div>
+								<div class="slider-temp-wrapper__slider-temp__slide-item">
+									<img src="{% static './img/slider-sale.png' %}" alt="slider-sale">
+								</div>	
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+			<div class="block-name">
+				<div class="container">
+					<div class="row">
+						<div class="col-12">
+							<h2>Рубрики</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="categories-wrapper">
+				<div class="container">
+					<div class="row">
+						<div class="col-12">
+							<div class="categories">
+								<div class="category">
+									<div class="category__top-icon">
+                                        {% comment %}<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="16.7264mm" height="12.4633mm" version="1.1" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd"
+										viewBox="0 0 13.13 9.78"
+										xmlns:xlink="http://www.w3.org/1999/xlink"
+										xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
+
+										<g id="Слой_x0020_1">
+										<metadata id="CorelCorpID_0Corel-Layer"/>
+										<path fill="url(#icon_gradient)" d="M-0 6.75l7.11 -5.51 2.53 5.94 -9.2 0.99 -0.44 -1.42zm8.09 -6.23l0 -0 2.73 6.41 -0 0 0 0.01c0.08,0.2 -0.01,0.42 -0.21,0.51 -0.2,0.08 -0.43,-0.01 -0.52,-0.21l-0 -0.01 -0 0 -2.72 -6.39 -0.01 -0.02c-0.08,-0.2 0.01,-0.42 0.21,-0.51 0.2,-0.08 0.43,0.01 0.52,0.21l0 0zm-0.29 7.3c0.03,0.12 0.05,0.25 0.05,0.38 0,0.87 -0.72,1.58 -1.61,1.58 -0.89,0 -1.61,-0.71 -1.61,-1.58 0,-0.01 0,-0.03 0,-0.04l0.58 -0.06c-0,0.03 -0.01,0.07 -0.01,0.1 0,0.56 0.46,1.02 1.03,1.02 0.57,0 1.03,-0.46 1.03,-1.02 0,-0.11 -0.02,-0.22 -0.05,-0.32l0.58 -0.06zm2.93 -4.53l-0 -0 1.2 -0.48 0 0 0 -0c0.14,-0.06 0.31,0.01 0.37,0.15 0.06,0.14 -0.01,0.31 -0.16,0.37l-0 0 0 0 -1.18 0.48 -0.01 0c-0.15,0.06 -0.31,-0.01 -0.37,-0.15 -0.06,-0.14 0.01,-0.31 0.16,-0.37l0 0zm0.11 -2.88l0 0 -0.58 1.13 -0 -0 -0 0c-0.07,0.14 -0.24,0.2 -0.38,0.13 -0.14,-0.07 -0.2,-0.24 -0.13,-0.38l0 -0 -0 -0 0.57 -1.12 0.01 -0.01c0.07,-0.14 0.24,-0.2 0.38,-0.13 0.14,0.07 0.2,0.24 0.13,0.38l0 0zm1.93 5.97l-0 0 -1.25 -0.32 0 -0 -0 -0c-0.15,-0.04 -0.24,-0.19 -0.2,-0.34 0.04,-0.15 0.2,-0.24 0.35,-0.2l0 0 0 -0 1.24 0.32 0.01 0c0.15,0.04 0.24,0.19 0.2,0.34 -0.04,0.15 -0.2,0.24 -0.35,0.2l0 -0z"/>
+										</g>
+                                        </svg>{% endcomment %}
+									</div>
+									<div class="category__bottom-text">
+										Полиграфия
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+
+			<div class="block-name">
+				<div class="container">
+					<div class="row">
+						<div class="col-12">
+							<h2>Новое</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="products-wrapper">
+
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-3 product-wrapper">
+							<div class="product">
+								<div class="product__header-image">
+									<div class="product__header-image__sale-block">
+										<img class='product__header-image__sale-block__bg' src="./img/icons/sale_bg.svg" alt="">
+										<span class="product__header-image__sale-block__text">акция!</span> 
+									</div>
+									<img class='product__header-image__product-img' src="./img/product.png" alt="product_name">
+								</div>
+								<div class="product__name">
+									Визитки цифровые Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid beatae ad et rem earum nemo nobis dolores distinctio numquam quae.
+								</div>
+								<div class="product__price-favorite">
+									<div class="product__price-favorite__price">
+										<div class="product__price-favorite__price__without-discount">40000 <!--<span class="sumbol">грн.</span>--> </div>
+										<div class="product__price-favorite__price__with-discount">444444<span class="sumbol">грн.</span></div>
+									</div>
+									<div class="product__price-favorite__favorite">
+										<img src="./img/icons/favorites.svg" alt="favorites">
+									</div>
+								</div>
+								<div class="product__company">
+									<div class="product__company__logo">
+										<img src="./img/some_logo.png" alt="some_logo">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 product-wrapper">
+							<div class="product">
+								<div class="product__header-image">
+									<div class="product__header-image__sale-block">
+										<img class='product__header-image__sale-block__bg' src="./img/icons/sale_bg.svg" alt="">
+										<span class="product__header-image__sale-block__text">sale!</span> 
+									</div>
+									<img class='product__header-image__product-img' src="./img/product.png" alt="product_name">
+								</div>
+								<div class="product__name">
+									Визитки цифровые Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid beatae ad et rem earum nemo nobis dolores distinctio numquam quae.
+								</div>
+								<div class="product__price-favorite">
+									<div class="product__price-favorite__price">
+										<div class="product__price-favorite__price__without-discount">40000<span class="sumbol">грн.</span></div>
+										<div class="product__price-favorite__price__with-discount">444444<span class="sumbol">грн.</span></div>
+									</div>
+									<div class="product__price-favorite__favorite">
+										<img src="./img/icons/favorites.svg" alt="favorites">
+									</div>
+								</div>
+								<div class="product__company">
+									<div class="product__company__logo">
+										<img src="./img/some_logo.png" alt="some_logo">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 product-wrapper">
+							<div class="product">
+								<div class="product__header-image">
+
+									<img class='product__header-image__product-img' src="./img/product.png" alt="product_name">
+								</div>
+								<div class="product__name">
+									Визитки цифровые Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid beatae ad et rem earum nemo nobis dolores distinctio numquam quae.
+								</div>
+								<div class="product__price-favorite">
+									<div class="product__price-favorite__price">
+										<div class="product__price-favorite__price__with-discount">444444<span class="sumbol">грн.</span></div>
+									</div>
+									<div class="product__price-favorite__favorite">
+										<img src="./img/icons/favorites.svg" alt="favorites">
+									</div>
+								</div>
+								<div class="product__company">
+									<div class="product__company__logo">
+										<img src="./img/some_logo.png" alt="some_logo">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 product-wrapper">
+							<div class="product">
+								<div class="product__header-image">
+
+									<img class='product__header-image__product-img' src="./img/product.png" alt="product_name">
+								</div>
+								<div class="product__name">
+									Визитки цифровые Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid beatae ad et rem earum nemo nobis dolores distinctio numquam quae.
+								</div>
+								<div class="product__price-favorite">
+									<div class="product__price-favorite__price">
+										<div class="product__price-favorite__price__with-discount">444444<span class="sumbol">грн.</span></div>
+									</div>
+									<div class="product__price-favorite__favorite">
+										<img src="./img/icons/favorites.svg" alt="favorites">
+									</div>
+								</div>
+								<div class="product__company">
+									<div class="product__company__logo">
+										<img src="./img/some_logo.png" alt="some_logo">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 product-wrapper">
+							<div class="product">
+								<div class="product__header-image">
+
+									<img class='product__header-image__product-img' src="./img/product.png" alt="product_name">
+								</div>
+								<div class="product__name">
+									Визитки цифровые Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid beatae ad et rem earum nemo nobis dolores distinctio numquam quae.
+								</div>
+								<div class="product__price-favorite">
+									<div class="product__price-favorite__price">
+										<div class="product__price-favorite__price__with-discount">444444<span class="sumbol">грн.</span></div>
+									</div>
+									<div class="product__price-favorite__favorite">
+										<img src="./img/icons/favorites.svg" alt="favorites">
+									</div>
+								</div>
+								<div class="product__company">
+									<div class="product__company__logo">
+										<img src="./img/some_logo.png" alt="some_logo">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 product-wrapper">
+							<div class="product">
+								<div class="product__header-image">
+
+									<img class='product__header-image__product-img' src="./img/product.png" alt="product_name">
+								</div>
+								<div class="product__name">
+									Визитки цифровые Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid beatae ad et rem earum nemo nobis dolores distinctio numquam quae.
+								</div>
+								<div class="product__price-favorite">
+									<div class="product__price-favorite__price">
+										<div class="product__price-favorite__price__with-discount">444444<span class="sumbol">грн.</span></div>
+									</div>
+									<div class="product__price-favorite__favorite">
+										<img src="./img/icons/favorites.svg" alt="favorites">
+									</div>
+								</div>
+								<div class="product__company">
+									<div class="product__company__logo">
+										<img src="./img/some_logo.png" alt="some_logo">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="container">
+					<div class="row">
+						<div class="col-12">
+							<div class="products-wrapper__see-all">
+								<a href='#' class="button button-grey">
+									Показать все
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div> <!-- products-wrapper -->
+			<div class="buyers-and-suppliers-wrapper">
+				<div class="container">
+					<div class="row">
+						<div class="col-12">
+							<div class="buyers-and-suppliers-cards">
+								<div class="buyers-and-suppliers-cards__card">
+									<div class="buyers-and-suppliers-cards__card__title">
+										<h2>Покупателям</h2>
+									</div>
+									<div class="buyers-and-suppliers-cards__card__block">
+										<div class="buyers-and-suppliers-cards__card__block__content">
+											<div class="buyers-and-suppliers-cards__card__block__content__icon">
+												<img src="./img/icons/follow_sale.svg" alt="follow_sale">
+											</div>
+											<div class="buyers-and-suppliers-cards__card__block__content__text">
+												Подписывайтесь на рассылку <b>акций, скидок распродаж</b>
+											</div>
+										</div>
+										<div class="buyers-and-suppliers-cards__card__block__button">
+											<a href="#" class='button button-with-gradient'>
+												Добавить
+											</a>
+										</div>
+									</div>
+								</div>
+								<div class="buyers-and-suppliers-cards__card">
+									<div class="buyers-and-suppliers-cards__card__title">
+										<h2>Поставщикам</h2>
+									</div>
+									<div class="buyers-and-suppliers-cards__card__block">
+										<div class="buyers-and-suppliers-cards__card__block__content">
+											<div class="buyers-and-suppliers-cards__card__block__content__icon">
+												<img src="./img/icons/icon_plus.svg" alt="icon_plus">
+											</div>
+											<div class="buyers-and-suppliers-cards__card__block__content__text">
+												Размещайте свои <b>акции, товары и услуги</b> на сайте NAZVANIE.COM
+											</div>
+										</div>
+										<div class="buyers-and-suppliers-cards__card__block__button">
+											<a href="#" class='button button-with-gradient'>
+												Добавить
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div> <!-- buyers-and-suppliers-wrapper -->
+		</div> <!-- content -->
+		
+		<footer class='footer-main'>
+
+		</footer>
+	</div> <!-- page -->
+
+
+	<!-- FOR SVG GRADIENT -->
+	<svg>
+		<defs>
+			<linearGradient id="icon_gradient" gradientUnits="userSpaceOnUse" x1="2.1" y1="0.39" x2="11.06" y2="9.36">
+				<stop offset="0" stop-opacity="1" stop-color="#07DC58"/>
+				<stop offset="1" stop-opacity="1" stop-color="#048B3B"/>
+			</linearGradient>
+		</defs>
+	</svg>
+	<!-- /FOR SVG GRADIENT -->
+
+    <script src="{% static './assets/js/main.js' %}"></script>
+
+</body>
+</html>

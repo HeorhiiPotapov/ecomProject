@@ -6,6 +6,7 @@ from django.core.validators import (MinValueValidator,
 from django.utils import timezone
 from decimal import Decimal
 from mptt.models import MPTTModel, TreeForeignKey
+from .utils import City
 
 User = get_user_model()
 
@@ -14,12 +15,22 @@ class Category(MPTTModel):
     """
     Product category class
     """
-    name = models.CharField("Название", max_length=300)
-    slug = models.SlugField("Url", max_length=300, unique=True)
-    parent = TreeForeignKey("self", on_delete=models.CASCADE, null=True,
-                            blank=True, related_name='children',
+    image = models.ImageField("Лого категории",
+                              default="category_img/defoult.png",
+                              upload_to="category_img")
+    name = models.CharField("Название",
+                            max_length=300)
+    slug = models.SlugField("Url",
+                            max_length=300,
+                            unique=True)
+    parent = TreeForeignKey("self",
+                            on_delete=models.CASCADE,
+                            null=True,
+                            blank=True,
+                            related_name='children',
                             verbose_name="Категория верхнего уровня")
-    is_active = models.BooleanField("Статус", default=True)
+    is_active = models.BooleanField("Статус",
+                                    default=True)
 
     class MPTTMeta:
         order_insertion_by = ['slug']
@@ -40,28 +51,21 @@ class Product(models.Model):
     """
     Product class
     """
-    ANY = 0
-    KHARKOV = 1
-    KIEV = 2
-    DNEPR = 3
-
-    CITY_LIST = [
-        ('0', 'Все'),
-        ('1', 'Харьков'),
-        ('2', 'Киев'),
-        ('3', 'Днепр')
-    ]
 
     name = models.CharField("Название", max_length=300)
-    price = models.DecimalField("Цена", max_digits=10,
+    price = models.DecimalField("Цена",
+                                max_digits=10,
                                 decimal_places=2,
                                 default=0)
-    discount = models.IntegerField("Дисконт", default=0,
+    discount = models.IntegerField("Дисконт",
+                                   default=0,
                                    validators=[MinValueValidator(0),
                                                MaxValueValidator(100)])
-    main_image = models.ImageField(
-        "Изображение", upload_to="product_img")
-    video = models.URLField("Ссылка на видео", null=True, blank=True)
+    main_image = models.ImageField("Изображение",
+                                   upload_to="product_img")
+    video = models.URLField("Ссылка на видео",
+                            null=True,
+                            blank=True)
     owner = models.ForeignKey(User,
                               on_delete=models.CASCADE,
                               related_name="products",
@@ -70,11 +74,16 @@ class Product(models.Model):
                                  on_delete=models.CASCADE,
                                  related_name='products',
                                  verbose_name="Категория")
-    overview = models.TextField("Описание", max_length=2000)
-    is_active = models.BooleanField("Статус", default=False)
-    timestamp = models.DateTimeField("Дата добавления", default=timezone.now)
-    city = models.CharField("Город", max_length=20,
-                            choices=CITY_LIST, default=0)
+    overview = models.TextField("Описание",
+                                max_length=2000)
+    is_active = models.BooleanField("Статус",
+                                    default=False)
+    timestamp = models.DateTimeField("Дата добавления",
+                                     default=timezone.now)
+    city = models.CharField("Город",
+                            max_length=20,
+                            choices=City.CITY_LIST,
+                            default=City.ANY)
 
     class Meta:
         verbose_name = "Товар/Акция"
@@ -86,16 +95,20 @@ class Product(models.Model):
             (self.discount / Decimal('100'))
 
     def get_absolute_url(self):
-        return reverse("products:detail", kwargs={"pk": self.pk})
+        return reverse("products:detail",
+                       kwargs={"pk": self.pk})
 
 
 class Image(models.Model):
     product = models.ForeignKey(Product,
                                 on_delete=models.CASCADE,
                                 related_name="images")
-    image = models.ImageField("Изображение", upload_to="product_img")
-    is_active = models.BooleanField("Статус", default=True)
-    timestamp = models.DateTimeField("Дата добавления", default=timezone.now)
+    image = models.ImageField("Изображение",
+                              upload_to="product_img")
+    is_active = models.BooleanField("Статус",
+                                    default=True)
+    timestamp = models.DateTimeField("Дата добавления",
+                                     default=timezone.now)
 
     class Meta:
         verbose_name = "Дополнительное фото"
@@ -105,11 +118,21 @@ class Image(models.Model):
         return f"{self.product.id}"
 
 
+class Slider(models.Model):
+    img = models.ImageField(upload_to="slider")
+
+    class Meta:
+        verbose_name = 'Слайдер'
+        verbose_name_plural = 'Слайдеры'
+
+
 class Feedback(models.Model):
     product = models.ForeignKey(Product,
                                 on_delete=models.CASCADE,
                                 related_name="feedbacks",
-                                verbose_name="Товар/Акция", null=True, blank=True)
+                                verbose_name="Товар/Акция",
+                                null=True,
+                                blank=True)
     sender = models.ForeignKey(User,
                                on_delete=models.CASCADE,
                                related_name="feed_sender",
@@ -118,8 +141,10 @@ class Feedback(models.Model):
                                  on_delete=models.CASCADE,
                                  related_name="feed_receiver",
                                  verbose_name="Кому")
-    text = models.TextField("Текст", max_length=600)
-    timestamp = models.DateTimeField("Время", default=timezone.now)
+    text = models.TextField("Текст",
+                            max_length=600)
+    timestamp = models.DateTimeField("Время",
+                                     default=timezone.now)
 
     class Meta:
         verbose_name = "Сообщение"

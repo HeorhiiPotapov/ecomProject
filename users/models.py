@@ -4,6 +4,7 @@ from .managers import CustomUserManager
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.conf import settings
+from products.utils import City
 
 User = settings.AUTH_USER_MODEL
 
@@ -32,10 +33,23 @@ class Profile(models.Model):
                               default="profile_img/default_profile_img.jpg"
                               )
 
-    brand = models.CharField("Бренд", max_length=100, null=True, blank=True)
-    city = models.CharField("Город", max_length=50, null=True, blank=True)
-    address = models.CharField("Адресс", max_length=300, null=True, blank=True)
-    phone = models.CharField("Телефон", max_length=100, null=True, blank=True)
+    brand = models.CharField("Бренд",
+                             max_length=100,
+                             null=True,
+                             blank=True)
+    city = models.CharField("Город",
+                            choices=City.CITY_LIST,
+                            max_length=50,
+                            null=True,
+                            blank=True)
+    address = models.CharField("Адресс",
+                               max_length=300,
+                               null=True,
+                               blank=True)
+    phone = models.CharField("Телефон",
+                             max_length=100,
+                             null=True,
+                             blank=True)
 
     def __str__(self):
         return self.user.email

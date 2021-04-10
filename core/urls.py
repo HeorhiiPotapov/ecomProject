@@ -14,15 +14,17 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include, reverse_lazy, re_path
+from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
-from django.views.generic.base import RedirectView
+from django.views import generic
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('products/', include('products.urls', namespace='products')),
+    path('products/', include('products.urls', namespace='products')),
+    path('users/', include('users.urls', namespace='users')),
+
     # password_reset
     path('password-reset/',
          auth_views.PasswordResetView.as_view(
@@ -41,7 +43,8 @@ urlpatterns = [
              template_name='users/passwd/reset_complete.html'),
          name='password_reset_complete'),
     # end password_reset
-    path('', include('users.urls', namespace="users")),
+    path('', generic.TemplateView.as_view(
+        template_name='index.html'), name='index')
 ]
 
 
