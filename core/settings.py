@@ -22,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'tv79k&dm$v594zivqdi==*t6(5yuv8ram*cbd1zz)tro8rc$)-'
+SECRET_KEY = ''
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -154,13 +154,13 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'bayjel13@gmail.com'  # os.environ.get('GMAIL_USER')
-EMAIL_HOST_PASSWORD = 'edstswyjbhpdthlg'  # os.environ.get('GMAIL_PASS')
+EMAIL_HOST_USER = ''  # os.environ.get('GMAIL_USER')
+EMAIL_HOST_PASSWORD = ''  # os.environ.get('GMAIL_PASS')
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
 # os.environ.get('DBOX_TOKEN')
-DROPBOX_OAUTH2_TOKEN = "OeIRcVjdFqEAAAAAAAAAAV7lvbE57m8X2fkw8R59cTmT8Nb-2Z8ra0HKgGsaIpl6"
+DROPBOX_OAUTH2_TOKEN = ""
 DROPBOX_ROOT_PATH = '/'
 
 django_heroku.settings(locals())
